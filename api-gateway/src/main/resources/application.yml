@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configuration:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              -GET
+              -POST
+              -PUT
+              -DELETE
+
+      routes:
+        - id: identity-service
+          uri: lb://identity-service
+          predicates:
+            - Path=/api/auth/**
+        - id: aqi-service
+          uri: lb://aqi-service
+          predicates:
+            - Path=/api/aqi/**
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:password@localhost:8761/eureka
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+          route:
+            RouteDefinitionLocator: INFO
+

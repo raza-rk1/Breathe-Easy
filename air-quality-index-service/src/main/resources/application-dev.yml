@@ -1,0 +1,21 @@
+server:
+  port: 8095
+
+# MySql Datasource Properties
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/breath_easy_air_quality
+    username: root
+    password: Raza
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+token:
+  signing-key: 413F4428472B4B6250655368566D5970337336763979244226452948404D6351
+
+air-quality:
+  api-key: aa812867c28472227342bc84a85fc7d2
+  base-api: http://api.openweathermap.org
